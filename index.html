@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Croquis Ruidos Molestos Dark</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script src="jspdf.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="section-register">
+        <div class="container">
+                <br>
+                <H3>CROQUIS DE RUIDOS MOLESTOS</h3>
+                <hr class="mb-2">
+                <H5>DATOS DENUNCIADO</h5>
+            <form id="form" method="POST" class="register__form">
+                        <div class="form-group half">
+                            <label for="cometida" class="form-label mb-1">Cometida en :</label>
+                            <input type="text" class="form-control" id="cometida">
+                        </div>
+                        <div class="form-group half">
+                            <label for="infractor" class="form-label mb-1">Denunciado :</label>
+                            <input type="text" class="form-control" id="infractor">
+                        </div>
+                        <div class="form-group half">
+                            <label for="apellido" class="form-label mb-1">Rut :</label>
+                            <input type="text" class="form-control" id="apellido">
+                        </div>
+                        <div class="form-group half">
+                            <label for="email" class="form-label mb-1">Citación Nº:</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <H5>DATOS RECLAMANTE</h5>
+                        </div>                                            
+                        <div class="form-group half">
+                            <label for="reclamante" class="form-label mb-1">Reclamante :</label>
+                            <input type="text" class="form-control" id="reclamante">
+                        </div>
+                        <div class="form-group half">
+                            <label for="direccion" class="form-label mb-1">Dirección :</label>
+                            <input type="text" class="form-control" id="direccion">
+                        </div>
+                        <div class="form-group half">
+                            <label for="rut" class="form-label mb-1">Rut :</label>
+                            <input type="text" class="form-control" id="rut">
+                        </div>
+                        <div class="form-group half">
+                            <label for="telefono" class="form-label mb-1">Telefono :</label>
+                            <input type="text" class="form-control" id="telefono">
+                        </div>
+                        <div class="form-group mb-0">
+                            <label for="inspector" class="form-label mb-1">Inspector :</label>
+                            <select class="form-control mb-4" id="inspector"
+                            <option>Enzo Crovetto</option>
+                            <option>Luis Aceituno</option>
+                            <option>Cristian Águila</option>
+                            <option>Yanina Alessandrini</option>
+                            <option>Victor Bravo</option>
+                            <option>Marco Cantillana</option>
+                            <option>Álvaro Carrasco</option>
+                            <option>Marco Colicoy</option>
+                            <option>Francisco Curín</option>
+                            <option>Camilo Díaz</option>
+                            <option>Ramón Farias</option>
+                            <option>Fabián Gutiérrez</option>
+                            <option>Jorge Huaiquicheo</option>
+                            <option>Guillermo Lara</option>
+                            <option>Gustavo Leigh</option>
+                            <option>Guillermo Marín</option>
+                            <option>Carlos Osorio</option>
+                            <option>Pedro Parada</option>
+                            <option>Claudio Parra</option>
+                            <option>Mario Riquelme</option>
+                            <option>Victor Rogel</option>
+                            <option>Belarmino Rojas</option>
+                            <option>Alexis Toledo</option>
+                            <option>Daniel Ulloa</option>
+                            <option>Luis Vega</option>
+                            </select>
+                        </div>
+                        <center>
+                            <div class="md-4"></div>
+                            <div class="btn btn-primary btn-lg mb-4" onclick="defaultBtnActive()">Cargar Imagen</div>
+                            <div class="file-name">
+                            SIN IMAGEN
+                            <input id="default-btn" class="form-label" type="file" hidden>
+                        </div>
+                            <button type = "submit" id="custom-btn">Generar PDF</button>
+                        </center>
+                            </div>
+                            <div class="container">
+                           <div class="image" hidden>
+                              <img src="" alt="">
+                           </div>
+                                 <i class="fas fa-cloud-upload-alt" hidden></i>
+                           <div id="cancel-btn" hidden>
+                              <i class="fas fa-times" ></i>
+                           </div>
+
+                        <script>
+                        const wrapper = document.querySelector(".wrapper");
+                        const fileName = document.querySelector(".file-name");
+                        const defaultBtn = document.querySelector("#default-btn");
+                        const customBtn = document.querySelector("#custom-btn");
+                        const cancelBtn = document.querySelector("#cancel-btn i");
+                        const img = document.querySelector("img");
+                        let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+                        function defaultBtnActive(){
+                          defaultBtn.click();
+                        }
+                        defaultBtn.addEventListener("change", function(){
+                          const file = this.files[0];
+                          if(file){
+                            const reader = new FileReader();
+                            reader.onload = function(){
+                              const result = reader.result;
+                              img.src = result;
+                              wrapper.classList.add("active");
+                            }
+                            cancelBtn.addEventListener("click", function(){
+                              img.src = "";
+                              wrapper.classList.remove("active");
+                            })
+                            reader.readAsDataURL(file);
+                          }
+                          if(this.value){
+                            let valueStore = this.value.match(regExp);
+                            fileName.textContent = valueStore;
+                          }
+                        });
+                        </script>
+                            <div class="signature" style="width: 1%; height: 1px;">
+                                <canvas id="signature-canvas"
+                                style="border: 1px dashed red; width: 1%; height: 2px;"></canvas>
+                            </div>
+     
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
