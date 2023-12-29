@@ -62,7 +62,7 @@ async function generatePDF(cometida, infractor, apellidos, email, reclamante, di
 //  Titulos
     pdf.setFontSize(10);
     pdf.text("I. MUNICIPALIDAD DE LAS CONDES", 60, 20);
-    pdf.text("DEPTO. SEG. CIUDADANA Y EMERGENCIA", 40, 30);
+    pdf.text("DIRECCIÓN DE SEGURIDAD PÚBLICA", 40, 30);
 
     pdf.setFontSize(20);
     pdf.text("CROQUIS DE RUIDOS MOLESTOS", 140, 80);
@@ -74,9 +74,9 @@ async function generatePDF(cometida, infractor, apellidos, email, reclamante, di
     pdf.setFontSize(12);
     pdf.text("COMETIDA EN   :", 50, 120);
     pdf.text(cometida, 150, 120);
-    pdf.text("INFRACTOR       :", 50, 135);
+    pdf.text("DENUNCIADO       :", 50, 135);
     pdf.text(infractor, 150, 135);
-    pdf.text("REP. LEGAL       :", 50, 150);
+    pdf.text("RUT       :", 50, 150);
     pdf.text(apellidos, 150, 150);
     pdf.text("INFRACCION Nº :", 50, 165);
     pdf.text(email, 150, 165);
@@ -87,7 +87,7 @@ async function generatePDF(cometida, infractor, apellidos, email, reclamante, di
 //  TEXTO INFERIOR
     pdf.text("RECLAMANTE  :", 50, 600);
     pdf.text(reclamante, 150, 600);
-    pdf.text("DIRECCION      :", 50, 615);
+    pdf.text("DIRECCIÓN      :", 50, 615);
     pdf.text(direccion, 150, 615);
     pdf.text("RUT                   :", 50, 630);
     pdf.text(rut, 150, 630);
